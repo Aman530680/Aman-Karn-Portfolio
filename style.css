@@ -623,6 +623,7 @@ body.light-mode .theme-toggle:hover {
   overflow: hidden;
   box-shadow: 0 0 20px 5px rgba(255, 215, 0, 0.5);
   transition: transform 0.5s ease, box-shadow 0.5s ease;
+  transform-style: preserve-3d;
 }
 
 .about-image img {
@@ -904,7 +905,7 @@ body.light-mode .theme-toggle:hover {
   text-shadow: none; /* Remove subtle glow when fully lit */
 }
 
-/* Removed styles for progress bars and skill-list elements */
+/* Removed unneeded skill elements */
 .progress-bar,
 .progress-fill,
 .skill-list,
@@ -994,50 +995,36 @@ body.light-mode .theme-toggle:hover {
 }
 
 /* ==================================================================== */
-/* 12. Responsive Design (Adaptive Layouts)                             */
+/* 12. Responsive Design (Adaptive Layouts) - OPTIMIZED                  */
 /* ==================================================================== */
 
-/* Global Mobile Padding Adjustment */
-@media (max-width: 768px) {
+/* 1. Desktop/Large Screen Optimization (Min 1200px) */
+@media (min-width: 1200px) {
   .container {
-    padding: 1rem;
+    /* Larger container for large desktop displays */
+    max-width: 1400px;
   }
 
   section {
-    padding: 4rem 0; /* Reduced vertical section padding */
+    /* Ensure sections fully utilize vertical space on large displays */
+    min-height: 80vh;
   }
 
-  h2 {
-    font-size: 2rem; /* Adjusted title size for smaller screens */
+  .hero-content h1 {
+    font-size: 5rem;
   }
 }
 
+/* 2. Tablet View (Max 1024px) */
 @media (max-width: 1024px) {
   /* Navbar adjustments for tablet view */
   .navbar .container {
     padding: 1rem 1rem;
   }
 
-  /* About Section */
-  .about-content-wrapper {
-    flex-direction: column;
-    gap: 2rem;
-    text-align: center;
-    padding: 2rem;
-  }
-  .about-text-box {
-    text-align: center;
-  }
-  .about-image {
-    margin-bottom: 1.5rem;
-    width: 80%; /* Fluid width */
-    max-width: 350px;
-    height: 350px;
-  }
-
-  /* Hero Section */
+  /* Hero Section: Stacked and Centered */
   .hero {
-    flex-direction: column-reverse;
+    flex-direction: column-reverse; /* Profile image above content */
     text-align: center;
   }
   .hero-content {
@@ -1045,9 +1032,22 @@ body.light-mode .theme-toggle:hover {
   }
   .profile-image {
     width: 60%;
-    max-width: 300px;
-    height: 300px;
+    max-width: 350px;
+    height: 350px;
     margin-bottom: 2rem;
+  }
+
+  /* About Section: Stacked and Centered */
+  .about-content-wrapper {
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+  }
+  .about-image {
+    width: 80%; /* Fluid width */
+    max-width: 350px;
+    height: 350px;
+    margin-bottom: 1.5rem;
   }
 
   /* Education/Certificates Stack */
@@ -1057,8 +1057,15 @@ body.light-mode .theme-toggle:hover {
   }
 }
 
+/* 3. Standard Mobile View (Max 768px) */
 @media (max-width: 768px) {
-  /* Smaller titles on mobile */
+  /* Global Adjustments */
+  .container {
+    padding: 1rem;
+  }
+  section {
+    padding: 4rem 0;
+  }
   h2 {
     font-size: 2.2rem;
   }
@@ -1119,17 +1126,33 @@ body.light-mode .theme-toggle:hover {
   }
 
   .contact-info a:hover {
-    transform: translateX(10px) scale(1.02); /* Adjust 3D effect for simpler mobile tap response */
+    /* Adjust 3D effect for simpler mobile tap response */
+    transform: translateX(10px) scale(1.02);
   }
 
-  /* Projects/Services Grid: Single Column */
+  /* Grids: Single Column */
   .projects-grid,
   .what-i-do-grid {
     grid-template-columns: 1fr;
   }
+}
 
-  /* Skill badges wrap naturally */
-  .skills-grid {
-    justify-content: center;
+/* 4. Extra Small Mobile View (e.g., iPhone SE, older phones) */
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+  .hero p {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+  .about-content-wrapper {
+    padding: 1rem;
+  }
+  .contact-content {
+    padding: 2rem 1rem;
+  }
+  .contact-info a {
+    font-size: 1rem;
   }
 }
