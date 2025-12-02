@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Aman Karn | Portfolio</title>
+
+    <!-- External Fonts (Inter & Playfair Display) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -11,25 +13,34 @@
       rel="stylesheet"
     />
 
+    <!-- Animate On Scroll (AOS) Library CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <!-- Font Awesome Icons -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
 
+    <!-- External CSS Stylesheet -->
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="scroll-indicator"></div>
-
+    <!-- Preloader/Loading Screen -->
     <div class="preloader">
       <div class="loader"></div>
     </div>
 
+    <!-- Scroll Indicator -->
+    <div id="scroll-indicator"></div>
+
+    <!-- Particles.js Background -->
     <div id="particles-js"></div>
 
+    <!-- Mouse Trail Glow -->
     <div id="mouse-glow"></div>
 
+    <!-- Navigation Bar -->
     <nav class="navbar">
       <div class="container">
         <a href="#hero" class="logo">Aman Karn</a>
@@ -58,6 +69,7 @@
       </div>
     </nav>
 
+    <!-- Hero Section -->
     <section id="hero" class="hero section-glow container">
       <div class="hero-content" data-aos="fade-right" data-aos-duration="1000">
         <h1><span class="text-animate">Hi, I’m Aman Karn</span></h1>
@@ -78,6 +90,7 @@
       </div>
     </section>
 
+    <!-- About Section -->
     <section id="about" class="section-glow">
       <div class="container" data-aos="fade-up" data-aos-duration="1000">
         <h2>About Me</h2>
@@ -123,6 +136,7 @@
       </div>
     </section>
 
+    <!-- Projects Section -->
     <section id="projects" class="section-glow">
       <div class="container" data-aos="fade-up">
         <h2>Projects</h2>
@@ -238,6 +252,7 @@
               </p>
             </div>
             <div class="project-links">
+              <!-- Note: localhost links won't work in this environment, but kept for context -->
               <a href="http://localhost:8085" target="_blank" class="btn-press"
                 >View Live <i class="fas fa-external-link-alt"></i
               ></a>
@@ -253,6 +268,7 @@
       </div>
     </section>
 
+    <!-- What I Do Section -->
     <section id="what-i-do" class="section-glow">
       <div class="container" data-aos="fade-up">
         <h2>What I Do</h2>
@@ -297,6 +313,7 @@
       </div>
     </section>
 
+    <!-- Education & Certificates Section -->
     <section id="education" class="section-glow">
       <div class="container" data-aos="fade-up">
         <h2>Education & Certificates</h2>
@@ -384,6 +401,7 @@
       </div>
     </section>
 
+    <!-- Skills Section -->
     <section id="skills" class="section-glow">
       <div class="container" data-aos="fade-up">
         <h2>Skills & Proficiency</h2>
@@ -505,6 +523,7 @@
       </div>
     </section>
 
+    <!-- Contact Section -->
     <section id="contact" class="section-glow">
       <div class="container" data-aos="fade-up">
         <h2>Connect</h2>
@@ -541,13 +560,17 @@
       </div>
     </section>
 
+    <!-- Footer -->
     <footer class="footer">
       <p>&copy; 2024 Aman Karn. Designed and coded with passion.</p>
     </footer>
 
+    <!-- JavaScript Libraries -->
+    <!-- AOS and particles.js must load before the custom script runs -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
+    <!-- External JavaScript File -->
     <script src="script.js"></script>
   </body>
 </html>

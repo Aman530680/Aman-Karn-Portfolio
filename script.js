@@ -110,6 +110,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Hide preloader once content is loaded
   window.addEventListener("load", () => {
     const preloader = document.querySelector(".preloader");
+    // Ensure the preloader has the 'hidden' class to fade out
     if (preloader) {
       preloader.classList.add("hidden");
     }

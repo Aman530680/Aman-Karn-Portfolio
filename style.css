@@ -1,5 +1,5 @@
 /* ==================================================================== */
-/* 1. CSS Reset and Global Variables (Dark Mode Default)                */
+/* 1. CSS Reset and Global Variables (Dark Mode Default)                */
 /* ==================================================================== */
 :root {
   /* DARK MODE PRIMARY COLORS */
@@ -199,7 +199,7 @@ section {
 }
 
 /* ==================================================================== */
-/* 2. Core Animations and Visual Effects                                */
+/* 2. Core Animations and Visual Effects                                */
 /* ==================================================================== */
 
 /* Scroll Progress Bar (Reading Indicator) */
@@ -231,6 +231,37 @@ section {
   z-index: 999;
   transform: translate(-50%, -50%);
   transition: opacity 0.5s ease, background 0.5s ease;
+}
+
+/* Preloader styles */
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  opacity: 1;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.preloader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader {
+  border: 8px solid rgba(255, 255, 255, 0.1);
+  border-top: 8px solid var(--accent-color);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
 }
 
 /* Section Glow */
@@ -365,7 +396,7 @@ section {
 }
 
 /* ==================================================================== */
-/* 3. Navigation Bar                                                    */
+/* 3. Navigation Bar                                                    */
 /* ==================================================================== */
 .navbar {
   position: fixed;
@@ -483,7 +514,7 @@ body.light-mode .theme-toggle:hover {
 }
 
 /* ==================================================================== */
-/* 4. Hero Section                                                      */
+/* 4. Hero Section                                                      */
 /* ==================================================================== */
 .hero {
   display: flex;
@@ -582,7 +613,7 @@ body.light-mode .theme-toggle:hover {
 }
 
 /* ==================================================================== */
-/* 5. About Section                                                     */
+/* 5. About Section                                                     */
 /* ==================================================================== */
 .about-content-wrapper {
   display: flex;
@@ -633,7 +664,7 @@ body.light-mode .theme-toggle:hover {
 }
 
 /* ==================================================================== */
-/* 6. Projects Section                                                  */
+/* 6. Projects Section                                                  */
 /* ==================================================================== */
 .projects-grid {
   display: grid;
@@ -706,7 +737,7 @@ body.light-mode .theme-toggle:hover {
 }
 
 /* ==================================================================== */
-/* 7. What I Do Section                                                 */
+/* 7. What I Do Section                                                 */
 /* ==================================================================== */
 .what-i-do-grid {
   display: grid;
@@ -773,7 +804,7 @@ body.light-mode .theme-toggle:hover {
 }
 
 /* ==================================================================== */
-/* 8. Education & Certificates Section                                  */
+/* 8. Education & Certificates Section                                  */
 /* ==================================================================== */
 .education-certificates-container {
   display: grid;
@@ -860,7 +891,7 @@ body.light-mode .theme-toggle:hover {
 }
 
 /* ==================================================================== */
-/* 9. Skills Section (ADAPTED FOR BADGES)                               */
+/* 9. Skills Section (ADAPTED FOR BADGES)                               */
 /* ==================================================================== */
 .skills-container {
   display: flex;
@@ -915,7 +946,7 @@ body.light-mode .theme-toggle:hover {
 }
 
 /* ==================================================================== */
-/* 10. Contact Section (Links Only)                                     */
+/* 10. Contact Section (Links Only)                                     */
 /* ==================================================================== */
 .contact-content {
   background: var(--card-bg);
@@ -977,7 +1008,7 @@ body.light-mode .theme-toggle:hover {
 }
 
 /* ==================================================================== */
-/* 11. Footer Section                                                   */
+/* 11. Footer Section                                                   */
 /* ==================================================================== */
 .footer {
   text-align: center;
@@ -995,7 +1026,7 @@ body.light-mode .theme-toggle:hover {
 }
 
 /* ==================================================================== */
-/* 12. Responsive Design (Adaptive Layouts) - OPTIMIZED                  */
+/* 12. Responsive Design (Adaptive Layouts) - OPTIMIZED                  */
 /* ==================================================================== */
 
 /* 1. Desktop/Large Screen Optimization (Min 1200px) */
