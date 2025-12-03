@@ -1,7 +1,6 @@
 // ====================================================================
 // 1. Core Variables & Data
 // ====================================================================
-
 // Typing animation data
 const roles = [
   "Full Stack Enthusiast",
@@ -143,6 +142,34 @@ function highlightNavLink() {
 }
 
 // ====================================================================
+// 7. Click Ripple Effect (New Feature for Visual Appeal)
+// ====================================================================
+function createClickRipple(e) {
+  // Check if the click occurred on a special element (like a link or button)
+  // to prevent distracting ripples over interactive elements, focusing the effect on the background.
+  if (e.target.closest("a") || e.target.closest("button")) {
+    return;
+  }
+
+  const ripple = document.createElement("span");
+  ripple.classList.add("click-ripple");
+
+  // Calculate position relative to the document
+  const x = e.clientX + window.scrollX;
+  const y = e.clientY + window.scrollY;
+
+  ripple.style.left = `${x}px`;
+  ripple.style.top = `${y}px`;
+
+  document.body.appendChild(ripple);
+
+  // Remove the element after the animation is complete
+  ripple.addEventListener("animationend", () => {
+    ripple.remove();
+  });
+}
+
+// ====================================================================
 // 6. Initialization on DOMContentLoaded
 // ====================================================================
 document.addEventListener("DOMContentLoaded", function () {
@@ -162,6 +189,9 @@ document.addEventListener("DOMContentLoaded", function () {
     updateScrollIndicator();
     highlightNavLink();
   });
+
+  // 🌟 ADDED: Global click listener for ripple effect 🌟
+  document.addEventListener("click", createClickRipple);
 
   // Close mobile menu when a link is clicked
   navLinks.forEach((link) => {

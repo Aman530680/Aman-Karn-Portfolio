@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Aman Karn | Portfolio</title>
 
+    <!-- External Font Links -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -12,13 +13,14 @@
       rel="stylesheet"
     />
 
+    <!-- External Library Links -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
 
+    <!-- Custom CSS Link -->
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -170,6 +172,7 @@
       <section id="about" class="section-glow">
         <div class="container" data-aos="fade-up" data-aos-duration="1000">
           <h2><i class="fas fa-user-circle"></i> About Me</h2>
+          <!-- Image and text positions are swapped via flex-direction: row-reverse in CSS -->
           <div class="about-content-wrapper">
             <div class="about-text-box">
               <p>
@@ -609,13 +612,13 @@
 
             <!-- UPDATED CONTACT LINKS -->
             <div class="contact-info" data-aos="fade-up" data-aos-delay="300">
-              <!-- 1. Email Link (mailto with pre-filled subject) -->
+              <!-- 1. Plain Email Text Link - REPLACED BUTTON -->
               <a
-                href="mailto:officala93@gmail.com?subject=Inquiry%20from%20Portfolio&body=Hello%20Aman%2C%0A%0AI%20am%20reaching%20out%20to%20discuss%20..."
+                href="mailto:officala93@gmail.com"
+                class="email-text-link"
                 target="_blank"
-                class="btn-press contact-link"
                 rel="noopener noreferrer"
-                ><i class="fa-solid fa-envelope"></i> Email</a
+                ><i class="fa-solid fa-envelope"></i> officala93@gmail.com</a
               >
 
               <!-- 2. Save Contact (vCard Data URI for direct save) -->
@@ -657,9 +660,11 @@
       </div>
     </footer>
 
+    <!-- External Library Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
+    <!-- Custom JavaScript Link -->
     <script src="script.js"></script>
   </body>
 </html>
