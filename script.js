@@ -1,13 +1,13 @@
 // ====================================================================
-// 13. Advanced JavaScript Logic
+// 1. Core Variables & Data
 // ====================================================================
 
 // Typing animation data
 const roles = [
+  "Full Stack Enthusiast",
+  "Front-End Developer",
   "Computer Science and Engineering Student",
   "Machine Learning Enthusiast",
-  "Front-End Developer",
-  "Full Stack Enthusiast",
   "Problem Solver",
 ];
 let roleIndex = 0;
@@ -17,6 +17,22 @@ const typingSpeed = 100;
 const deletingSpeed = 50;
 const delayBetweenRoles = 2000;
 
+// DOM Element Caching
+const themeToggle = document.getElementById("theme-toggle");
+const mouseGlow = document.getElementById("mouse-glow");
+const scrollIndicator = document.getElementById("scroll-indicator");
+const navMenu = document.getElementById("nav-menu");
+const hamburger = document.getElementById("hamburger");
+const navLinks = document.querySelectorAll(".nav-links a:not(.resume-btn)");
+const sections = document.querySelectorAll("section");
+const navbar = document.querySelector(".navbar");
+
+const sunIcon = "fas fa-sun";
+const moonIcon = "fas fa-moon";
+
+// ====================================================================
+// 2. Typing Animation Logic
+// ====================================================================
 function typeWriter() {
   const currentRole = roles[roleIndex % roles.length];
   const roleElement = document.getElementById("role-text");
@@ -45,13 +61,9 @@ function typeWriter() {
   setTimeout(typeWriter, speed);
 }
 
-// --- Core Functions ---
-
-// 1. Theme Toggle
-const themeToggle = document.getElementById("theme-toggle");
-const sunIcon = "fas fa-sun";
-const moonIcon = "fas fa-moon";
-
+// ====================================================================
+// 3. Theme Toggle & Mouse Glow
+// ====================================================================
 function applyTheme(isLight) {
   document.body.classList.toggle("light-mode", isLight);
   localStorage.setItem("theme", isLight ? "light" : "dark");
@@ -65,17 +77,28 @@ function toggleTheme() {
   applyTheme(!isLight);
 }
 
-// 2. Mouse Trail Glow
-const mouseGlow = document.getElementById("mouse-glow");
 function updateMouseGlow(e) {
   if (mouseGlow) {
+    // Corrected to use clientX/Y and scrollY for fixed positioning
     mouseGlow.style.left = `${e.clientX}px`;
     mouseGlow.style.top = `${e.clientY + window.scrollY}px`;
   }
 }
 
-// 3. Scroll Indicator
-const scrollIndicator = document.getElementById("scroll-indicator");
+// ====================================================================
+// 4. Mobile Menu Toggle
+// ====================================================================
+function toggleMenu() {
+  navMenu.classList.toggle("open");
+  const icon = hamburger.querySelector("i");
+  const isExpanded = navMenu.classList.contains("open");
+  icon.className = isExpanded ? "fas fa-times" : "fas fa-bars";
+  hamburger.setAttribute("aria-expanded", isExpanded);
+}
+
+// ====================================================================
+// 5. Scroll Functionality
+// ====================================================================
 function updateScrollIndicator() {
   if (scrollIndicator) {
     const totalHeight =
@@ -87,30 +110,74 @@ function updateScrollIndicator() {
   }
 }
 
-// --- Initialization on DOMContentLoaded ---
-document.addEventListener("DOMContentLoaded", function () {
-  // Load saved theme or default to dark
-  const savedTheme = localStorage.getItem("theme");
-  if (savedTheme === "light") {
-    applyTheme(true);
-  } else {
-    applyTheme(false);
+function highlightNavLink() {
+  let current = "";
+  const navbarHeight = navbar ? navbar.offsetHeight : 0;
+  const scrollPosition = window.scrollY + navbarHeight + 50; // Added offset for better detection
+
+  sections.forEach((section) => {
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.clientHeight;
+    if (
+      scrollPosition >= sectionTop &&
+      scrollPosition < sectionTop + sectionHeight
+    ) {
+      current = section.getAttribute("id");
+    }
+  });
+
+  // Ensure 'hero' is active when at the very top
+  if (
+    sections.length > 1 &&
+    window.scrollY < sections[1].offsetTop - navbarHeight - 50
+  ) {
+    current = "hero";
   }
+
+  navLinks.forEach((link) => {
+    link.classList.remove("active");
+    if (link.getAttribute("href").substring(1) === current) {
+      link.classList.add("active");
+    }
+  });
+}
+
+// ====================================================================
+// 6. Initialization on DOMContentLoaded
+// ====================================================================
+document.addEventListener("DOMContentLoaded", function () {
+  // Load saved theme
+  const savedTheme = localStorage.getItem("theme");
+  applyTheme(savedTheme === "light");
 
   // Event Listeners
   if (themeToggle) {
     themeToggle.addEventListener("click", toggleTheme);
   }
+  if (hamburger) {
+    hamburger.addEventListener("click", toggleMenu);
+  }
   document.addEventListener("mousemove", updateMouseGlow);
-  window.addEventListener("scroll", updateScrollIndicator);
+  window.addEventListener("scroll", () => {
+    updateScrollIndicator();
+    highlightNavLink();
+  });
+
+  // Close mobile menu when a link is clicked
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      if (navMenu.classList.contains("open")) {
+        toggleMenu();
+      }
+    });
+  });
 
   // Start the typing animation after a small delay
-  setTimeout(typeWriter, 1000);
+  setTimeout(typeWriter, 500);
 
   // Hide preloader once content is loaded
   window.addEventListener("load", () => {
     const preloader = document.querySelector(".preloader");
-    // Ensure the preloader has the 'hidden' class to fade out
     if (preloader) {
       preloader.classList.add("hidden");
     }
@@ -125,166 +192,39 @@ document.addEventListener("DOMContentLoaded", function () {
     delay: 50,
   });
 
-  // Smooth scrolling for navigation links
-  const navLinks = document.querySelectorAll(".nav-links a:not(.resume-btn)");
-  const sections = document.querySelectorAll("section");
-  const navbar = document.querySelector(".navbar");
-
-  navLinks.forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault();
-      if (this.classList.contains("resume-btn")) return;
-
-      const targetId = this.getAttribute("href").substring(1);
-      const targetElement = document.getElementById(targetId);
-      const navbarHeight = navbar ? navbar.offsetHeight : 0;
-      if (targetElement) {
-        window.scrollTo({
-          top: targetElement.offsetTop - navbarHeight,
-          behavior: "smooth",
-        });
-      }
-    });
-  });
-
-  // Active link highlighting on scroll
-  window.addEventListener("scroll", () => {
-    let current = "";
-    const navbarHeight = navbar ? navbar.offsetHeight : 0;
-    const scrollPosition = window.scrollY + navbarHeight + 1;
-
-    sections.forEach((section) => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.clientHeight;
-      if (
-        scrollPosition >= sectionTop + sectionHeight * 0.2 &&
-        scrollPosition < sectionTop + sectionHeight
-      ) {
-        current = section.getAttribute("id");
-      }
-    });
-
-    if (
-      sections.length > 1 &&
-      window.scrollY < sections[1].offsetTop - navbarHeight - 50
-    ) {
-      current = "hero";
-    }
-
-    document.querySelectorAll(".nav-links a").forEach((link) => {
-      if (link.classList.contains("resume-btn")) return;
-
-      link.classList.remove("active");
-      if (link.getAttribute("href").substring(1) === current) {
-        link.classList.add("active");
-      }
-    });
-  });
-
   // particles.js config
   if (typeof particlesJS !== "undefined") {
     particlesJS("particles-js", {
       particles: {
-        number: {
-          value: 100,
-          density: {
-            enable: true,
-            value_area: 1000,
-          },
-        },
-        color: {
-          value: "#FFD700",
-        },
-        shape: {
-          type: "star",
-          stroke: {
-            width: 0,
-            color: "#000000",
-          },
-          polygon: {
-            nb_sides: 5,
-          },
-        },
-        opacity: {
-          value: 0.6,
-          random: true,
-          anim: {
-            enable: true,
-            speed: 1,
-            opacity_min: 0.1,
-            sync: false,
-          },
-        },
-        size: {
-          value: 4,
-          random: true,
-          anim: {
-            enable: true,
-            speed: 40,
-            size_min: 0.1,
-            sync: false,
-          },
-        },
+        number: { value: 80, density: { enable: true, value_area: 800 } },
+        color: { value: "#00bcd4" },
+        shape: { type: "star" },
+        opacity: { value: 0.8, random: true },
+        size: { value: 3, random: true },
         line_linked: {
           enable: true,
           distance: 150,
-          color: "#FFD700",
+          color: "#00bcd4",
           opacity: 0.4,
           width: 1,
         },
         move: {
           enable: true,
-          speed: 2,
+          speed: 1.5,
           direction: "none",
           random: true,
           straight: false,
           out_mode: "out",
-          bounce: false,
-          attract: {
-            enable: false,
-            rotateX: 600,
-            rotateY: 1200,
-          },
         },
       },
       interactivity: {
         detect_on: "canvas",
         events: {
-          onhover: {
-            enable: true,
-            mode: "grab",
-          },
-          onclick: {
-            enable: true,
-            mode: "push",
-          },
+          onhover: { enable: true, mode: "repulse" },
+          onclick: { enable: true, mode: "push" },
           resize: true,
         },
-        modes: {
-          grab: {
-            distance: 200,
-            line_linked: {
-              opacity: 1,
-            },
-          },
-          bubble: {
-            distance: 400,
-            size: 40,
-            duration: 2,
-            opacity: 8,
-            speed: 3,
-          },
-          repulse: {
-            distance: 200,
-            duration: 0.4,
-          },
-          push: {
-            particles_nb: 4,
-          },
-          remove: {
-            particles_nb: 2,
-          },
-        },
+        modes: { repulse: { distance: 100, duration: 0.4 } },
       },
       retina_detect: true,
     });
