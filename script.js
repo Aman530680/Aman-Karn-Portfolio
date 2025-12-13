@@ -142,7 +142,7 @@ function highlightNavLink() {
 }
 
 // ====================================================================
-// 7. Click Ripple Effect (New Feature for Visual Appeal)
+// 6. Click Ripple Effect (New Feature for Visual Appeal)
 // ====================================================================
 function createClickRipple(e) {
   // Check if the click occurred on a special element (like a link or button)
@@ -170,7 +170,158 @@ function createClickRipple(e) {
 }
 
 // ====================================================================
-// 6. Initialization on DOMContentLoaded
+// 7. Contact Form Validation and Submission (UPDATED LOGIC)
+// ====================================================================
+
+const contactForm = document.getElementById("contact-form");
+const nameInput = document.getElementById("name");
+const emailInput = document.getElementById("email");
+const messageInput = document.getElementById("message");
+const successMessageDiv = document.getElementById("form-success-message");
+
+// Simple Email Validation Regex
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+/**
+ * Shows an error message for a given input field.
+ */
+function setError(input, message) {
+  const formGroup = input.parentElement;
+  const errorDisplay = document.getElementById(`${input.id}-error`);
+
+  formGroup.classList.add("error");
+  errorDisplay.textContent = message;
+}
+
+/**
+ * Clears the error message for a given input field.
+ */
+function clearError(input) {
+  const formGroup = input.parentElement;
+  const errorDisplay = document.getElementById(`${input.id}-error`);
+
+  formGroup.classList.remove("error");
+  errorDisplay.textContent = "";
+}
+
+/**
+ * Performs client-side validation on all fields before submission.
+ * @returns {boolean} True if all fields are valid, false otherwise.
+ */
+function validateForm() {
+  let isValid = true;
+
+  // Validate Name
+  if (nameInput.value.trim() === "") {
+    setError(nameInput, "Name cannot be empty.");
+    isValid = false;
+  } else {
+    clearError(nameInput);
+  }
+
+  // Validate Email
+  const emailValue = emailInput.value.trim();
+  if (emailValue === "") {
+    setError(emailInput, "Email cannot be empty.");
+    isValid = false;
+  } else if (!emailRegex.test(emailValue)) {
+    setError(emailInput, "Please enter a valid email address.");
+    isValid = false;
+  } else {
+    clearError(emailInput);
+  }
+
+  // Validate Message
+  if (messageInput.value.trim() === "") {
+    setError(messageInput, "Message cannot be empty.");
+    isValid = false;
+  } else {
+    clearError(messageInput);
+  }
+
+  return isValid;
+}
+
+
+// --- WEB3FORMS SUBMISSION LOGIC ---
+if (contactForm) {
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // 1. Run client-side validation
+        if (!validateForm()) {
+            successMessageDiv.classList.remove("show"); // Hide any previous success message
+            return; // Stop submission if validation fails
+        }
+
+        // 2. Prepare Form Data
+        const formData = new FormData(contactForm);
+        // NOTE: Replace "d64ab352-b569-45f6-b097-2c96a1a8cfee" with your actual Web3Forms Access Key
+        formData.append("access_key", "d64ab352-b569-45f6-b097-2c96a1a8cfee");
+
+        const originalText = submitBtn.textContent;
+
+        // 3. Update Button State (Show loading and disable)
+        submitBtn.textContent = "Sending...";
+        submitBtn.disabled = true;
+        successMessageDiv.classList.remove("show"); // Ensure success message is hidden during submission
+
+
+        try {
+            // 4. Send Request
+            const response = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                body: formData
+            });
+
+            const data = await response.json();
+
+            // 5. Handle Response
+            if (response.ok && data.success) {
+                // Show success message without reloading
+                successMessageDiv.textContent = `Success! Your message has been sent, ${nameInput.value.trim()}. I'll be in touch.`;
+                successMessageDiv.classList.add("show");
+                
+                // Clear the form fields
+                contactForm.reset();
+
+                // Optional: Hide success message after a delay
+                setTimeout(() => {
+                    successMessageDiv.classList.remove("show");
+                }, 5000);
+
+            } else {
+                // Handle API error
+                console.error("Web3Forms Error:", data);
+                // Display error message using the same non-reloading element
+                successMessageDiv.textContent = "Error: Something went wrong. Please check the console for details.";
+                successMessageDiv.classList.add("show");
+            }
+
+        } catch (error) {
+            // Handle network/fetch error
+            console.error("Network Error:", error);
+            successMessageDiv.textContent = "Network Error: Could not connect to the server. Please try again.";
+            successMessageDiv.classList.add("show");
+        } finally {
+            // 6. Restore Button State
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        }
+    });
+
+    // Optional: Live validation on input change
+    nameInput.addEventListener("input", () => validateForm());
+    emailInput.addEventListener("input", () => validateForm());
+    messageInput.addEventListener("input", () => validateForm());
+}
+// --- END WEB3FORMS SUBMISSION LOGIC ---
+
+
+// ====================================================================
+// 8. Initialization on DOMContentLoaded (Original Logic)
 // ====================================================================
 document.addEventListener("DOMContentLoaded", function () {
   // Load saved theme
