@@ -6,6 +6,9 @@ const roles = [
   "Problem Solver",
   "Web Architect",
   "Data Structures & Algorithms Champion",
+  "DevOps Learner",
+  "UX/UI Designer",
+  "Tech Innovator",
 ];
 let roleIndex = 0;
 let charIndex = 0;
@@ -30,10 +33,32 @@ const messageInput = document.getElementById("message");
 const successMessageDiv = document.getElementById("form-success-message");
 const customCursor = document.createElement("div");
 const customCursorDot = document.createElement("div");
-const scrollUpBtn = document.getElementById("scroll-to-top-btn");
+const scrollUpBtn = document.getElementById("scroll-to-top-btn") || document.createElement('div');
+scrollUpBtn.id = "scroll-to-top-btn";
+scrollUpBtn.classList.add("scroll-to-top");
+scrollUpBtn.innerHTML = '<i class="fas fa-chevron-up"></i>';
+document.body.appendChild(scrollUpBtn);
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const cardAnimations = document.querySelectorAll(".card-animation");
 const sectionHeaders = document.querySelectorAll(".section-header-animation");
+const projectFilterBtns = document.querySelectorAll(".filter-btn");
+const projectCardsV2 = document.querySelectorAll(".project-card-v2-animation");
+const projectRows = document.querySelectorAll(".project-item-row-animation");
+const skillBadges = document.querySelectorAll(".skill-badge-animation");
+const timelineItems = document.querySelectorAll(".timeline-item-animation");
+const certificateCards = document.querySelectorAll(".certificate-card-animation");
+const allAnimatableElements = [
+    ...cardAnimations,
+    ...sectionHeaders,
+    ...projectCardsV2,
+    ...projectRows,
+    ...skillBadges,
+    ...timelineItems,
+    ...certificateCards,
+    document.querySelector('.about-image-animation') || null,
+    document.querySelector('.contact-form-animation') || null,
+    document.querySelector('.footer-animation') || null
+].filter(el => el != null);
 function typeWriter() {
   const currentRole = roles[roleIndex % roles.length];
   const roleElement = document.getElementById("role-text");
@@ -188,16 +213,11 @@ function validateForm() {
 }
 function initializeScrollToTop() {
   if (scrollUpBtn) {
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 500) {
-        scrollUpBtn.classList.add("show");
-      } else {
-        scrollUpBtn.classList.remove("show");
-      }
-    });
-    scrollUpBtn.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
+    if (window.scrollY > 500) {
+      scrollUpBtn.classList.add("show");
+    } else {
+      scrollUpBtn.classList.remove("show");
+    }
   }
 }
 function checkAnimationElements() {
@@ -209,8 +229,9 @@ function checkAnimationElements() {
       }
     });
   }, { threshold: 0.2 });
-  cardAnimations.forEach(card => observer.observe(card));
-  sectionHeaders.forEach(header => observer.observe(header));
+  allAnimatableElements.forEach(el => {
+    if (el) observer.observe(el);
+  });
 }
 if (contactForm) {
     const submitBtn = contactForm.querySelector('button[type="submit"]');
@@ -273,14 +294,11 @@ function attachProjectCardListeners() {
 function initSkillTabs() {
     const tabs = document.querySelectorAll('.skill-tab-btn');
     const contents = document.querySelectorAll('.skill-content');
-
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
             const targetId = tab.getAttribute('data-target');
-            
             tabs.forEach(t => t.classList.remove('active'));
             contents.forEach(c => c.classList.remove('active'));
-            
             tab.classList.add('active');
             const targetContent = document.getElementById(targetId);
             if (targetContent) {
@@ -291,6 +309,52 @@ function initSkillTabs() {
     if (tabs.length > 0) {
         tabs[0].click();
     }
+}
+function filterProjects(category) {
+    const projectContainers = document.querySelectorAll('.project-item-row-container, .project-card-v2-container, .project-item-row-container-v3, .project-card-v2-container-v3');
+    projectContainers.forEach(container => {
+        container.style.display = 'none';
+    });
+    const targetContainer = document.getElementById(`projects-${category}`);
+    if (targetContainer) {
+        targetContainer.style.display = 'grid';
+    }
+    projectFilterBtns.forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('data-filter') === category) {
+            btn.classList.add('active');
+        }
+    });
+}
+function setupProjectFiltering() {
+    projectFilterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterProjects(btn.getAttribute('data-filter'));
+        });
+    });
+    filterProjects('all');
+}
+if (scrollUpBtn) {
+    scrollUpBtn.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+}
+function updateAllProgressPies() {
+    document.querySelectorAll('.progress-pie').forEach(pie => {
+        const value = pie.getAttribute('data-progress-value');
+        if (value) {
+            pie.style.background = `conic-gradient(
+                var(--secondary-accent) 0%,
+                var(--accent-color) ${value}%,
+                var(--progress-track) ${value}%,
+                var(--progress-track) 100%
+            )`;
+            const valueElement = pie.querySelector('.progress-pie-value');
+            if (valueElement) {
+                valueElement.textContent = `${value}%`;
+            }
+        }
+    });
 }
 document.addEventListener("DOMContentLoaded", function () {
   const savedTheme = localStorage.getItem("theme");
@@ -323,6 +387,8 @@ document.addEventListener("DOMContentLoaded", function () {
     if (preloader) {
       preloader.classList.add("hidden");
     }
+    updateAllProgressPies();
+    checkAnimationElements();
   });
   if (typeof AOS !== "undefined") {
     AOS.init({
@@ -369,7 +435,7 @@ document.addEventListener("DOMContentLoaded", function () {
       retina_detect: true,
     });
   }
-  checkAnimationElements();
   attachProjectCardListeners();
   initSkillTabs();
+  setupProjectFiltering();
 });
