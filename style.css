@@ -15,8 +15,8 @@
 --progress-track: rgba(255, 255, 255, 0.1);
 
 /* TYPOGRAPHY */
---font-body: 'Plus Jakarta Sans', sans-serif;
---font-heading: 'Orbitron', sans-serif;
+--font-body: 'DM Serif Text', serif;
+--font-heading: 'DM Serif Display', serif;
 
 /* NEW COLORS FOR COMPETITIVE PLATFORMS */
 --leetcode-color: #ffa116;
