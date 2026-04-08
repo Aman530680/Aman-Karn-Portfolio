@@ -1,5 +1,5 @@
-/* ==================================================================== */
-/* 1. CSS Reset and Global Variables (Dark Mode Default)                */
+﻿/* ==================================================================== */
+/* 1. CSS Reset and Global Variables (Dark Mode Default) Â  Â  Â  Â  Â  Â  Â  Â */
 /* ==================================================================== */
 :root {
 /* COLORS */
@@ -178,7 +178,7 @@ box-shadow: 0 2px 10px var(--shadow-color) !important;
 }
 
 /* ==================================================================== */
-/* 2. Visual Effects & Particles                                        */
+/* 2. Visual Effects & Particles Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â */
 /* ==================================================================== */
 #particles-js {
 position: fixed;
@@ -249,7 +249,7 @@ transform: rotate(360deg);
 }
 
 /* ==================================================================== */
-/* 3. Navigation Bar (Responsive with Hamburger)                        */
+/* 3. Navigation Bar (Responsive with Hamburger) Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â */
 /* ==================================================================== */
 .navbar {
 position: fixed;
@@ -360,7 +360,7 @@ transform: scale(1.1) rotate(15deg);
 }
 
 /* ==================================================================== */
-/* 4. Hero Section (Flexbox) - IMPROVED CLARITY AND IMPACT              */
+/* 4. Hero Section (Flexbox) - IMPROVED CLARITY AND IMPACT Â  Â  Â  Â  Â  Â  Â */
 /* ==================================================================== */
 .hero {
 display: flex;
@@ -510,7 +510,7 @@ transform: scale(1.05);
 }
 
 /* ==================================================================== */
-/* 5. About Section (Flexbox)                                           */
+/* 5. About Section (Flexbox) Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  */
 /* ==================================================================== */
 .about-content-wrapper {
 display: flex;
@@ -523,7 +523,7 @@ padding: 3rem;
 border-radius: 15px;
 border: 1px solid var(--border-glow-color);
 box-shadow: 0 0 30px 5px rgba(0, 188, 212, 0.1);
-/* 🌟 REVERSED: Image on left, text on right 🌟 */
+/* ðŸŒŸ REVERSED: Image on left, text on right ðŸŒŸ */
 flex-direction: row-reverse;
 }
 .about-text-box {
@@ -557,7 +557,7 @@ object-fit: cover;
 }
 
 /* ==================================================================== */
-/* 6. Projects Section (CSS Grid)                                       */
+/* 6. Projects Section (CSS Grid) Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  */
 /* ==================================================================== */
 .projects-grid {
 display: grid;
@@ -604,17 +604,8 @@ color: var(--bg-color);
 transform: translateY(-2px);
 }
 
-.project-hidden {
-display: none;
-}
-
-.projects-toggle-wrap {
-text-align: center;
-margin-top: 2.5rem;
-}
-
 /* ==================================================================== */
-/* 7. What I Do Section (CSS Grid)                                      */
+/* 7. What I Do Section (CSS Grid) Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â */
 /* ==================================================================== */
 .what-i-do-grid {
 display: grid;
@@ -653,7 +644,7 @@ text-shadow: 0 0 15px var(--accent-color);
 }
 
 /* ==================================================================== */
-/* 8. Education & Certificates (CSS Grid)                               */
+/* 8. Education & Certificates (CSS Grid) Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  */
 /* ==================================================================== */
 .education-certificates-container {
 display: grid;
@@ -734,7 +725,7 @@ font-size: 0.95rem;
 }
 
 /* ==================================================================== */
-/* 9. Skills Section (Badges using Flexbox)                             */
+/* 9. Skills Section (Badges using Flexbox) Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  */
 /* ==================================================================== */
 .skills-container {
 display: flex;
@@ -772,7 +763,7 @@ box-shadow: 0 0 20px var(--accent-color);
 }
 
 /* ==================================================================== */
-/* 10. Contact Section (Form and Info Styles)                            */
+/* 10. Contact Section (Form and Info Styles) Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â */
 /* ==================================================================== */
 
 /* NEW: Two-Column Layout for Contact Section */
@@ -973,7 +964,7 @@ color: var(--accent-color);
 }
 
 /* ==================================================================== */
-/* 11. Footer Section                                                   */
+/* 11. Footer Section Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  */
 /* ==================================================================== */
 .footer {
 text-align: center;
@@ -988,395 +979,3 @@ color: var(--highlight-color);
 }
 
 /* ==================================================================== */
-/* 12. Responsive Design (Media Queries) - CRITICAL UPDATE              */
-/* ==================================================================== */
-
-/* Tablet & Smaller Desktop View (Max 1024px) */
-@media (max-width: 1024px) {
-.nav-menu {
-position: absolute;
-top: 100%;
-left: 0;
-width: 100%;
-background-color: rgba(0, 0, 0, 0.95);
--webkit-backdrop-filter: blur(10px);
-backdrop-filter: blur(10px);
-flex-direction: column;
-align-items: center;
-transform: scaleY(0); /* Initially hidden */
-transform-origin: top;
-transition: transform 0.4s ease-in-out;
-padding: 1rem 0;
-}
-.nav-menu.open {
-transform: scaleY(1);
-}
-.nav-links {
-flex-direction: column;
-gap: 0;
-width: 100%;
-}
-.nav-links li {
-width: 100%;
-text-align: center;
-}
-.nav-links a {
-display: block;
-padding: 0.75rem 1rem;
-font-size: 1rem;
-}
-.nav-links a::after {
-display: none;
-}
-.resume-btn {
-margin: 1rem 0 0.5rem 0;
-width: 80%;
-}
-.theme-toggle {
-margin: 0.5rem 0;
-}
-.hamburger {
-display: block;
-}
-
-/* Hero Section: Stack content */
-.hero {
-flex-direction: column-reverse; /* Image above text on mobile */
-text-align: center;
-gap: 3rem;
-min-height: auto;
-padding-top: 8rem;
-}
-.hero-content {
-padding: 0;
-}
-.profile-image {
-width: 70%;
-max-width: 300px;
-height: 300px;
-}
-.hero-buttons {
-justify-content: center;
-}
-
-/* About Section: Stack content */
-.about-content-wrapper {
-/* Override desktop row-reverse to ensure content stacks naturally on mobile */
-flex-direction: column;
-gap: 3rem;
-padding: 2rem;
-}
-.about-image {
-width: 80%;
-max-width: 300px;
-height: 300px;
-}
-
-/* Education & Certificates: Stack content */
-.education-certificates-container {
-grid-template-columns: 1fr;
-gap: 3rem;
-}
-
-/* Contact Section: Stack columns vertically on tablet/mobile */
-.contact-wrapper {
-flex-direction: column;
-gap: 2rem;
-padding: 0 1rem;
-}
-
-.contact-links-sidebar {
-/* Move sidebar above the form on mobile */
-order: -1;
-width: 100%;
-padding: 0 1rem;
-text-align: center;
-}
-
-.contact-links-sidebar h3 {
-text-align: center;
-border-left: none;
-border-bottom: 1px dashed var(--border-glow-color);
-padding-left: 0;
-padding-bottom: 1rem;
-}
-
-.contact-link-vertical {
-justify-content: center;
-border-left-color: transparent;
-}
-
-.contact-content {
-/* Form box takes full width */
-flex: 1;
-width: 100%;
-padding: 2rem 1.5rem;
-}
-}
-
-/* Mobile View (Max 600px) */
-@media (max-width: 600px) {
-.container {
-padding: 1rem;
-}
-section {
-padding: 6rem 0 3rem 0;
-}
-h2 {
-font-size: 2rem;
-margin-bottom: 2rem;
-}
-
-/* Adjust Hero Text */
-.hero-content h1 {
-font-size: 2.5rem;
-margin-bottom: 1rem; /* Adjusted for mobile view */
-}
-.role-title {
-font-size: 1.25rem;
-}
-.hero-buttons {
-flex-direction: column;
-gap: 1rem;
-}
-.primary-btn,
-.secondary-btn,
-.comp-btn {
-/* Make all hero buttons full width on mobile */
-width: 100%;
-text-align: center;
-}
-
-/* Smaller Cards/Grids */
-.projects-grid,
-.what-i-do-grid {
-grid-template-columns: 1fr;
-gap: 1.5rem;
-}
-
-.contact-links-sidebar {
-padding: 0;
-}
-
-.contact-links-sidebar h3 {
-font-size: 1.25rem;
-}
-
-.contact-content {
-padding: 1.5rem;
-}
-
-}
-
-/* ==================================================================== */
-/* ANIMATIONS & VISUAL EFFECTS                                          */
-/* ==================================================================== */
-
-/* Custom Cursor */
-.custom-cursor {
-position: fixed;
-width: 36px;
-height: 36px;
-border: 2px solid var(--accent-color);
-border-radius: 50%;
-pointer-events: none;
-z-index: 99999;
-transform: translate(-50%, -50%);
-transition: width 0.2s ease, height 0.2s ease, background 0.2s ease;
-}
-.custom-cursor.hovered {
-width: 56px;
-height: 56px;
-background: rgba(0, 188, 212, 0.15);
-border-color: var(--secondary-accent);
-}
-.custom-cursor-dot {
-position: fixed;
-width: 6px;
-height: 6px;
-background: var(--secondary-accent);
-border-radius: 50%;
-pointer-events: none;
-z-index: 99999;
-transform: translate(-50%, -50%);
-box-shadow: 0 0 8px var(--secondary-accent);
-}
-
-/* Scroll To Top */
-.scroll-to-top {
-position: fixed;
-bottom: 2rem;
-right: 2rem;
-width: 48px;
-height: 48px;
-background: var(--accent-color);
-color: var(--bg-color);
-border-radius: 50%;
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: 1.2rem;
-cursor: pointer;
-z-index: 9000;
-opacity: 0;
-visibility: hidden;
-transform: translateY(20px);
-transition: all 0.3s ease;
-box-shadow: 0 0 20px rgba(0,188,212,0.5);
-border: none;
-}
-.scroll-to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
-.scroll-to-top:hover { background: var(--secondary-accent); transform: translateY(-4px); box-shadow: 0 0 30px var(--secondary-accent); }
-
-/* Click Ripple */
-.click-ripple {
-position: absolute;
-width: 10px;
-height: 10px;
-border-radius: 50%;
-border: 2px solid var(--accent-color);
-transform: translate(-50%, -50%) scale(0);
-animation: rippleOut 0.6s ease-out forwards;
-pointer-events: none;
-z-index: 9998;
-}
-@keyframes rippleOut { to { transform: translate(-50%,-50%) scale(20); opacity: 0; } }
-
-/* Floating Orbs */
-.orb { position: fixed; border-radius: 50%; pointer-events: none; z-index: 0; filter: blur(80px); opacity: 0.15; }
-.orb-1 { width: 500px; height: 500px; background: radial-gradient(circle, #00bcd4, transparent); top: -100px; left: -100px; animation: orbFloat1 12s ease-in-out infinite; }
-.orb-2 { width: 400px; height: 400px; background: radial-gradient(circle, #7c3aed, transparent); bottom: 10%; right: -80px; animation: orbFloat2 15s ease-in-out infinite; }
-.orb-3 { width: 300px; height: 300px; background: radial-gradient(circle, #00e5ff, transparent); top: 50%; left: 50%; animation: orbFloat3 10s ease-in-out infinite; }
-@keyframes orbFloat1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(60px,80px)} }
-@keyframes orbFloat2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-80px,-60px)} }
-@keyframes orbFloat3 { 0%,100%{transform:translate(-50%,-50%)} 50%{transform:translate(-40%,-60%)} }
-
-/* Grid Overlay */
-.grid-overlay {
-position: fixed;
-top: 0; left: 0;
-width: 100%; height: 100%;
-background-image: linear-gradient(rgba(0,188,212,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,188,212,0.03) 1px, transparent 1px);
-background-size: 60px 60px;
-pointer-events: none;
-z-index: 0;
-}
-
-/* Hero Name Pulse */
-.hero-content h1 { animation: namePulse 4s ease-in-out infinite; }
-@keyframes namePulse {
-0%,100% { text-shadow: 0 0 15px rgba(255,255,255,0.4); }
-50% { text-shadow: 0 0 40px rgba(0,188,212,0.6), 0 0 80px rgba(0,229,255,0.2); }
-}
-
-/* Logo Shimmer */
-.logo {
-background: linear-gradient(90deg, var(--secondary-accent), #fff, var(--accent-color), var(--secondary-accent));
-background-size: 300%;
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-background-clip: text;
-animation: logoShimmer 4s linear infinite;
-}
-@keyframes logoShimmer { 0%{background-position:0% 50%} 100%{background-position:300% 50%} }
-
-/* Profile Image Spinning Ring */
-.profile-image { position: relative; }
-.profile-image::before {
-content: '';
-position: absolute;
-inset: -6px;
-border-radius: 50%;
-background: conic-gradient(var(--accent-color), #7c3aed, var(--secondary-accent), var(--accent-color));
-z-index: -1;
-animation: ringRotate 4s linear infinite;
-}
-@keyframes ringRotate { to { transform: rotate(360deg); } }
-
-/* Project Card Shimmer + Mouse Glow */
-.project-card { position: relative; overflow: hidden; }
-.project-card::before {
-content: '';
-position: absolute;
-top: 0; left: -100%;
-width: 60%; height: 100%;
-background: linear-gradient(120deg, transparent, rgba(0,188,212,0.08), transparent);
-transition: left 0.6s ease;
-pointer-events: none;
-z-index: 1;
-}
-.project-card:hover::before { left: 150%; }
-.project-card::after {
-content: '';
-position: absolute;
-inset: 0;
-border-radius: 15px;
-background: radial-gradient(circle at var(--mouse-x,50%) var(--mouse-y,50%), rgba(0,188,212,0.07), transparent 60%);
-pointer-events: none;
-z-index: 1;
-}
-
-/* Service Card Animated Border */
-.service-card { position: relative; }
-.service-card::before {
-content: '';
-position: absolute;
-inset: -2px;
-border-radius: 16px;
-background: linear-gradient(135deg, var(--accent-color), #7c3aed, var(--secondary-accent), var(--accent-color));
-background-size: 300% 300%;
-z-index: -1;
-opacity: 0;
-transition: opacity 0.4s ease;
-animation: borderSpin 4s linear infinite;
-}
-.service-card:hover::before { opacity: 1; }
-@keyframes borderSpin { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
-
-/* Section Glow Top Line */
-.section-glow { position: relative; }
-.section-glow::before {
-content: '';
-position: absolute;
-top: 0; left: 50%;
-transform: translateX(-50%);
-width: 80%; height: 1px;
-background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
-box-shadow: 0 0 20px var(--accent-color);
-}
-
-/* Certificate Card Shine */
-.certificate-card { position: relative; overflow: hidden; }
-.certificate-card::after {
-content: '';
-position: absolute;
-top: 0; left: -100%;
-width: 50%; height: 100%;
-background: linear-gradient(120deg, transparent, rgba(0,229,255,0.1), transparent);
-transition: left 0.5s ease;
-pointer-events: none;
-}
-.certificate-card:hover::after { left: 150%; }
-
-/* Education Item Hover Bar */
-.education-list-item { position: relative; overflow: hidden; }
-.education-list-item::after {
-content: '';
-position: absolute;
-top: 0; left: 0;
-width: 5px; height: 0;
-background: var(--secondary-accent);
-box-shadow: 0 0 10px var(--secondary-accent);
-transition: height 0.4s ease;
-}
-.education-list-item:hover::after { height: 100%; }
-
-/* About Image Tilt */
-.about-image:hover {
-transform: perspective(800px) rotateY(-8deg) scale(1.03);
-box-shadow: 0 0 40px rgba(0,188,212,0.5);
-}
-
-/* Contact Input Focus Scale */
-.contact-form input:focus,
-.contact-form textarea:focus { transform: scale(1.01); }

@@ -536,5 +536,19 @@ document.addEventListener("DOMContentLoaded", function () {
   // Initialize dynamic components
   attachProjectCardListeners();
   initSkillTabs();
-  // setupProjectFiltering(); // Disabled as HTML for filters is commented out
+
+  // View More / View Less toggle for projects
+  const viewMoreBtn = document.getElementById('view-more-btn');
+  if (viewMoreBtn) {
+    viewMoreBtn.addEventListener('click', () => {
+      const hidden = document.querySelectorAll('.project-hidden');
+      const isExpanded = viewMoreBtn.dataset.expanded === 'true';
+      hidden.forEach(card => card.style.display = isExpanded ? 'none' : 'flex');
+      viewMoreBtn.dataset.expanded = !isExpanded;
+      viewMoreBtn.innerHTML = isExpanded
+        ? 'View More Projects <i class="fas fa-chevron-down"></i>'
+        : 'View Less <i class="fas fa-chevron-up"></i>';
+      if (isExpanded) viewMoreBtn.dataset.expanded = 'false';
+    });
+  }
 });
